@@ -13,21 +13,17 @@ return new class extends Migration
     {
         Schema::create('books', function (Blueprint $table) {
             $table->id();
-            $table->string('judul');
+            $table->string('title');
             $table->string('sinopsis');
             $table->string('tahun_terbit');
             $table->string('image')->nullable();
-            $table->foreignId('genre_id')
-            ->constrained()-> onDelete('cascade')
-            ->onUpdate('cascade');
-            $table->foreignId('author_id')
-            ->constrained()-> onDelete('cascade')
-            ->onUpdate('cascade');
+            $table->foreignId('genre_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('author_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
 
-    /**s
+    /**
      * Reverse the migrations.
      */
     public function down(): void

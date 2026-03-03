@@ -13,7 +13,10 @@ class AuthorsController extends Controller
     public function index()
     {
         //
-        return view('authors.index');
+        $no= 1;
+
+        $authors = Authors::all();
+        return view('authors.index', compact('authors', 'no'));
     }
 
     /**
@@ -22,6 +25,7 @@ class AuthorsController extends Controller
     public function create()
     {
         //
+        return view ('authors.create');
     }
 
     /**
@@ -30,37 +34,72 @@ class AuthorsController extends Controller
     public function store(Request $request)
     {
         //
+        $validasi = $request->validate([
+            "name_author"=> "required|max:255",
+            "age"=>"required",
+            "alamat"=>"required|max:255"
+        ]);
+
+        if(!$validasi){
+            return redirect()->route('penulis.index')->with('error');
+        }
+        Authors ::create($validasi);
+        return redirect()->route('penulis.index')->with('success');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Authors $authors)
+    public function show($id)
     {
         //
+        $penulis = Authors::find($id);
+        return view ('authors.show', compact ('penulis'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Authors $authors)
+    public function edit($id)
     {
         //
+        $edit = Authors::find($id);
+        return view('authors.edit', compact('edit'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Authors $authors)
+    public function update(Request $request, $id)
     {
-        //
+    $update = Authors::find($id);
+
+    if (!$update) {
+        return redirect()->route('penulis.index')->with('error');
     }
 
+    $update->update([
+        "name_author" => $request->name_author,
+        "age" => $request->age,
+        "alamat" => $request->alamat
+    ]);
+
+    return redirect()->route('penulis.index')->with('success');
+    }
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Authors $authors)
+    public function destroy($id)
     {
         //
+        $delete = Authors::find($id);
+
+        if(!$delete){
+            $delete->delete();
+            return redirect()->route('penulis.index')->with('error');
+        }
+            $delete->delete();
+            return redirect()->route('penulis.index')->with('success');
+
     }
 }
