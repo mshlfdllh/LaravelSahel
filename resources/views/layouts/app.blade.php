@@ -47,7 +47,7 @@
         <nav class="flex-1 px-3 py-5 space-y-1">
             <p class="px-3 mb-3 text-[10px] font-semibold tracking-[0.2em] text-[#7c8497] uppercase">Main Menu</p>
 
-            <a href="/" class="nav-link group flex items-center gap-3 px-3 py-2.5 rounded-lg border border-transparent text-[#9ca3af] text-sm font-medium transition-all duration-150 hover:bg-white/[0.04] hover:text-white hover:border-white/[0.06]">
+            <a href="/first" class="nav-link group flex items-center gap-3 px-3 py-2.5 rounded-lg border border-transparent text-[#9ca3af] text-sm font-medium transition-all duration-150 hover:bg-white/[0.04] hover:text-white hover:border-white/[0.06]">
                 <span class="nav-icon text-[#7c8497] transition-colors group-hover:text-[#6c8cff]">
                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
@@ -137,9 +137,9 @@
                 <div class="flex items-center gap-3">
                     <div class="text-right hidden sm:block">
                         <p class="text-white text-xs font-medium">Welcome back</p>
-                        <p class="text-[#7c8497] text-[11px]">User</p>
+                        <p class="text-[#7c8497] text-[11px]"><span>{{Auth::user()->name}}</span></p>
                     </div>
-                    <a href=""
+                    <a href="{{route('logout')}}"
                        class="inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium text-[#f87171] bg-[#f87171]/10 border border-[#f87171]/20 transition hover:bg-[#f87171]/20 hover:border-[#f87171]/40">
                         <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>

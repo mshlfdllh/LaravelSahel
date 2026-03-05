@@ -6,13 +6,20 @@ use App\Http\Controllers\BooksController;
 use App\Http\Controllers\GenresController;
 use Illuminate\Support\Facades\Route;
 
+
 Route ::get('/',[AuthController::class, 'index'])
-->name('home.index');
+->name('home');
+
+Route:: get('/first', function () {
+    return view('index');
+});
 
 //Route Auth
 
+Route:: middleware('guest')->group(function (){
+
 Route:: get('/login', [AuthController::class, 'login'])
-->name('auth.login');
+->name('login');
 
 Route:: get('/register', [AuthController::class, 'register'])
 ->name('auth.register');
@@ -20,7 +27,20 @@ Route:: get('/register', [AuthController::class, 'register'])
 Route:: post('/login', [AuthController::class, 'actionLogin']) 
 ->name('action.login');
 
+Route ::post('/register', [AuthController::class, 'actionRegister'])
+->name('action.register');
+
+});
+
 //End Route Auth
+
+Route :: middleware('auth')->group(function () {
+    
+Route ::get('/dashboard', [AuthController::class, 'dashboard'])
+->name('dashboard');
+
+Route:: get('/logout', [AuthController::class, 'logout'])
+->name('logout');
 
 //Route Genres
 
@@ -91,3 +111,7 @@ Route::put('books/edit/{id}', [BooksController::class, 'update'])
 
 Route::delete('books/delete/{id}', [BooksController::class, 'destroy'])
  ->name('books.destroy');
+
+});
+
+

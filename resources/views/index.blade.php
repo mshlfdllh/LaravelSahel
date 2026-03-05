@@ -8,7 +8,7 @@
     <div class="mb-8">
         <p class="text-xs font-semibold tracking-[0.25em] text-[#7c8497] uppercase mb-1">Overview</p>
         <h1 class="text-3xl font-bold text-white tracking-tight">
-            Welcome back, <span class="text-[#6c8cff]">Admin</span> 👋
+            Welcome back, <span class="text-[#6c8cff]">{{ Auth::user()->name}}</span> 👋
         </h1>
         <p class="text-[#7c8497] text-sm mt-1">Here's what's happening in your library today.</p>
     </div>

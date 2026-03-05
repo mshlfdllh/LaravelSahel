@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-     <link href="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.css" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.css" rel="stylesheet"/>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
@@ -16,7 +16,16 @@
     
     <x-navbar></x-navbar>
 
-
+            @if (@session('success'))
+                <script>
+                    Swal.fire({
+                    title: "success",
+                    text: "{{ session('success') }}",
+                    icon: "error",
+                    
+                    });
+                </script>
+            @endif
    <div class="container mx-auto p-6">
         <div class="grid md:grid-cols-3 gap-6">
 
