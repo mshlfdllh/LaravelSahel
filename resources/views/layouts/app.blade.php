@@ -23,6 +23,18 @@
 </head>
 <body class="bg-[#111318] font-sans antialiased">
 
+    @if (session('success'))
+<script>
+Swal.fire({
+    title: "Success",
+    text: "{{ session('success') }}",
+    icon: "success",
+    background: "#2a2d35",
+    color: "#ffffff",
+});
+</script>
+@endif
+
 <div class="flex min-h-screen">
 
     {{-- ── SIDEBAR ── --}}
